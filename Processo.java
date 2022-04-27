@@ -58,8 +58,10 @@ public class Processo {
         }
         
 //ADICIONANDO O CLIENTE NA LISTA         
-        Reserva reserva = new Reserva(c,pag);
-        reservas.add(reserva);
+        if (c != null){
+            Reserva reserva = new Reserva(c,pag);
+           reservas.add(reserva);
+        }
     }
 
     public static void PesquisarReserva(){
@@ -73,7 +75,10 @@ public class Processo {
                 JOptionPane.showMessageDialog(null, "Reserva encontrada, porém na lista de espera! \nCliente: " +reservas.get(existe).getCliente().toString() + "\nPosição na fila: "+ (existe-5)); 
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Reserva não encontrada!!");
+           String novo =  JOptionPane.showInputDialog(null, "Reserva não encontrada, gostaria de realizar uma reserva? [ S / N ]").toLowerCase();
+            if (novo.equals("s")){
+                Reservar();
+            }
         }  
     }
 
@@ -105,7 +110,7 @@ public class Processo {
   
     public static void CancelarReserva(){
 
-    String achar = JOptionPane.showInputDialog(null, "Insira o CPF OU CNPJ para consulta: ");
+    String achar = JOptionPane.showInputDialog(null, "Insira o CPF OU CNPJ para cancelar a reserva: ");
 
     int existe = verificando(achar);
 
