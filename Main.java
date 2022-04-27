@@ -3,33 +3,36 @@ import javax.swing.JOptionPane;
 public class Main {
 
     public static void main(String[] args) {
-        int comando;
+        String comando;
 
         do{
-            comando = Integer.parseInt(JOptionPane.showInputDialog(opcoes()));
-            if(comando < 1 || comando > 6){
-                JOptionPane.showMessageDialog(null, "Por favor digite uma opção entre 1 e 6!");
-            } else{
-                switch(comando){
-                    case 1: 
-                        Processo.Reservar();
-                        break;
-                    case 2:
-                        Processo.PesquisarReserva();
-                        break;
-                    case 3:
-                        Processo.ImprimirReservas();
-                        break;
-                    case 4:
-                        Processo.ImprimirListaDeEspera();
-                        break;
-                    case 5:
-                        Processo.CancelarReserva();
+        comando = JOptionPane.showInputDialog(opcoes());
+            try{   
+                if("".equals(comando)){               
+                }else if ("1".equals(comando)){
+                    Processo.Reservar();
+                }else if ("2".equals(comando)){
+                    Processo.PesquisarReserva();
+                }else if ("3".equals(comando)){
+                    Processo.ImprimirReservas();
+                }else if ("4".equals(comando)){
+                    Processo.ImprimirListaDeEspera();
+                }else if ("5".equals(comando)){
+                    Processo.CancelarReserva();
+                }else if ("6".equals(comando)){
+                    break;
+                }else {
+                    JOptionPane.showMessageDialog(null,"Comando inválido! \nDigite um numero entre 1 e 6");
+                    throw new UnsupportedOperationException();
                 }
-           }
-        }while (comando != 6);    
-    }
+            
+                }  catch (UnsupportedOperationException e) {
+                        e.printStackTrace();
+                }
+        }while (comando != "6");
 
+    }
+    
     public static String opcoes(){
         String aux="Restaurante SABOR SOFISTICADO";
             aux+="\n1.Reservar mesa";
@@ -42,3 +45,5 @@ public class Main {
     }
 
 }    
+
+
